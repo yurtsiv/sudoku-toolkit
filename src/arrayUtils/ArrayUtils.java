@@ -17,16 +17,27 @@ public class ArrayUtils {
     }
 
     public static int[] getSubset (int[][] arr, int fromRow, int toRow, int fromCol, int toCol) {
-        int resultSize = ((toRow + 1) - (fromRow + 1)) * ((toCol + 1) - (fromCol + 1));
+        int resultSize = ((toRow + 1) - (fromRow )) * ((toCol + 1) - (fromCol));
         int[] result = new int[resultSize];
         int resultCount = 0;
 
         for (int i = fromRow; i <= toRow; i++) {
-            for (int j = fromCol; i <= toCol; j++) {
+            for (int j = fromCol; j <= toCol; j++) {
                 result[resultCount] = arr[i][j];
                 resultCount++;
             }
         }
+
         return result;
+    }
+
+    public static boolean contains (int[] arr, int elemToFind) {
+        for (int elem : arr) {
+            if (elem == elemToFind) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

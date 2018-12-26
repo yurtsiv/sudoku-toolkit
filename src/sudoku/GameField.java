@@ -2,6 +2,8 @@ package sudoku;
 
 import arrayUtils.ArrayUtils;
 
+import java.util.ArrayList;
+
 public class GameField {
     private int[][] field = new int[9][9];
 
@@ -22,16 +24,52 @@ public class GameField {
         { 6, 8, 6, 8 }
     };
 
-    public void set (int row, int column, int value) {
-        field[row][column] = value;
+    public int getSize () {
+        return 9;
     }
 
-    public int get (int row, int column) {
-        return field[row][column];
+    public ArrayList<Integer> getPossibleNumbersForCell (int rowNum, int columnNum) {
+        checkCoordsValidity(rowNum, columnNum);
+
+        int[] row = getRow(rowNum);
+        int[] column = getColumn(columnNum);
+        int[] subGrid = getSubGrid(rowNum, columnNum);
+        ArrayList<Integer> result = new ArrayList<>();
+
+        for (int i = 1; i <= 9; i++) {
+            if (
+                !ArrayUtils.contains(row, i) &&
+                !ArrayUtils.contains(column, i) &&
+                !ArrayUtils.contains(subGrid, i)
+            ) {
+                result.add(i);
+            }
+        }
+
+        return result;
     }
+
+    private void checkCoordsValidity (int rowNum, int columnNum) {
+        if (rowNum < 0 || rowNum >= 9 || columnNum < 0 || columnNum >= 9) {
+            throw new IllegalArgumentException("Incorrect coordinates provided");
+        }
+    }
+
+    public void set (int rowNum, int columnNum, int value) {
+        checkCoordsValidity(rowNum, columnNum);
+
+        field[rowNum][columnNum] = value;
+    }
+
+    public int get (int rowNum, int columnNum) {
+        return field[rowNum][columnNum];
+    }
+
+
+    private int[] getRow (int rowNum) { return field[rowNum]; }
 
     private boolean isRowValid (int rowNum) {
-        return ArrayUtils.areAllElemsDistinct(field[rowNum], 0);
+        return ArrayUtils.areAllElemsDistinct(getRow(rowNum), 0);
     }
 
     private int[] getColumn (int columnNum) {
@@ -46,6 +84,25 @@ public class GameField {
 
     private boolean isColumnValid (int columnNum) {
         return ArrayUtils.areAllElemsDistinct(getColumn(columnNum), 0);
+    }
+
+    private int[] getSubGrid (int rowNum, int columnNum) {
+        checkCoordsValidity(rowNum, columnNum);
+
+        int subGridNum = 0;
+        for (int i = 0; i < subGridsMap.length; i++) {
+            int[] subGridMap = subGridsMap[i];
+            if (
+                rowNum >= subGridMap[0] &&
+                rowNum <= subGridMap[1] &&
+                columnNum >= subGridMap[2] &&
+                columnNum <= subGridMap[3]
+            ) {
+                subGridNum = i;
+            }
+        }
+
+        return getSubGrid(subGridNum);
     }
 
     private int[] getSubGrid (int subGridNum) {
