@@ -6,11 +6,11 @@ public class GameField {
     private int[][] field = new int[9][9];
 
     /*
-        Indicates which coordinates has each subgrid.
+        Indicates which coordinates has each subGrid.
 
-        subgridsMap[subgridNum] = { fromRow, toRow, fromColumn, toColumn }
+        subGridsMap[subGridNum] = { fromRow, toRow, fromColumn, toColumn }
      */
-    private final int[][] subgridsMap = new int[][]{
+    private final int[][] subGridsMap = new int[][]{
         { 0, 2, 0, 2 },
         { 0, 2, 3, 5 },
         { 0, 2, 6, 8 },
@@ -48,18 +48,18 @@ public class GameField {
         return ArrayUtils.areAllElemsDistinct(getColumn(columnNum), 0);
     }
 
-    private int[] getSubgrid (int subgridNum) {
-        int[] subgridMap = subgridsMap[subgridNum];
-        return ArrayUtils.getSubset(field, subgridMap[0], subgridMap[1], subgridMap[2], subgridMap[3]);
+    private int[] getSubGrid (int subGridNum) {
+        int[] subGridMap = subGridsMap[subGridNum];
+        return ArrayUtils.getSubset(field, subGridMap[0], subGridMap[1], subGridMap[2], subGridMap[3]);
     }
 
-    private boolean isSubgridValid (int subgridNum) {
-        return ArrayUtils.areAllElemsDistinct(getSubgrid(subgridNum), 0);
+    private boolean isSubGridValid (int subGridNum) {
+        return ArrayUtils.areAllElemsDistinct(getSubGrid(subGridNum), 0);
     }
 
     public boolean isValid () {
         for (int i = 0; i < field.length; i++) {
-            if (!isColumnValid(i) || !isRowValid(i) || !isSubgridValid(i)) {
+            if (!isColumnValid(i) || !isRowValid(i) || !isSubGridValid(i)) {
                 return false;
             }
         }
