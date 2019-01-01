@@ -8,7 +8,7 @@ public class GameField {
     private int[][] field = new int[9][9];
 
     /*
-        Indicates which coordinates has each subGrid.
+        Indicates which coordinates has each sub-grid.
 
         subGridsMap[subGridNum] = { fromRow, toRow, fromColumn, toColumn }
      */
@@ -118,6 +118,22 @@ public class GameField {
         for (int i = 0; i < field.length; i++) {
             if (!isColumnValid(i) || !isRowValid(i) || !isSubGridValid(i)) {
                 return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean isSolved () {
+        if (!isValid()) {
+            return false;
+        }
+
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field[0].length; j++) {
+                if (field[i][j] == 0) {
+                    return false;
+                }
             }
         }
 
