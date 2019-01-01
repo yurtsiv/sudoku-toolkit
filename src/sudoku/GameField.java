@@ -28,37 +28,23 @@ public class GameField {
         return 9;
     }
 
-    public ArrayList<Integer> getPossibleNumbersForCell (int rowNum, int columnNum) {
-        checkCoordsValidity(rowNum, columnNum);
-
-        int[] row = getRow(rowNum);
-        int[] column = getColumn(columnNum);
-        int[] subGrid = getSubGrid(rowNum, columnNum);
-        ArrayList<Integer> result = new ArrayList<>();
-
-        for (int i = 1; i <= 9; i++) {
-            if (
-                !ArrayUtils.contains(row, i) &&
-                !ArrayUtils.contains(column, i) &&
-                !ArrayUtils.contains(subGrid, i)
-            ) {
-                result.add(i);
-            }
-        }
-
-        return result;
-    }
-
     private void checkCoordsValidity (int rowNum, int columnNum) {
         if (rowNum < 0 || rowNum >= 9 || columnNum < 0 || columnNum >= 9) {
             throw new IllegalArgumentException("Incorrect coordinates provided");
         }
     }
 
-    public void set (int rowNum, int columnNum, int value) {
+    public boolean tryToSet (int rowNum, int columnNum, int value) {
         checkCoordsValidity(rowNum, columnNum);
 
         field[rowNum][columnNum] = value;
+
+        if (isRowValid(rowNum) && isColumnValid(columnNum) && isSubGridValid(rowNum, columnNum)) {
+            return true;
+        }
+
+        field[rowNum][columnNum] = 0;
+        return false;
     }
 
     public int get (int rowNum, int columnNum) {
@@ -114,6 +100,10 @@ public class GameField {
         return ArrayUtils.areAllElemsDistinct(getSubGrid(subGridNum), 0);
     }
 
+    private boolean isSubGridValid (int rowNum, int columnNum) {
+        return ArrayUtils.areAllElemsDistinct(getSubGrid(rowNum, columnNum), 0);
+    }
+
     public boolean isValid () {
         for (int i = 0; i < field.length; i++) {
             if (!isColumnValid(i) || !isRowValid(i) || !isSubGridValid(i)) {
@@ -138,5 +128,17 @@ public class GameField {
         }
 
         return true;
+    }
+
+    public int[] getFirstUnassignedPosition () {
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field[0].length; j++) {
+                if (field[i][j] == 0) {
+                    return new int[] {i, j};
+                }
+            }
+        }
+
+        return null;
     }
 }

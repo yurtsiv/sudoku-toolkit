@@ -5,10 +5,6 @@ import sudoku.GameField;
 public class Solver {
     private SudokuSolver solver;
 
-    public Solver (SudokuSolver solver) {
-        this.solver = solver;
-    }
-
     public Solver () {
         this.solver = new BacktrackingSolver();
     }
