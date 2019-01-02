@@ -3,7 +3,20 @@ package main;
 import sudoku.*;
 import sudoku.solver.Solver;
 
-public class Main {
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+    @Override
+    public void start (Stage primaryStage) {
+        primaryStage.setTitle("Hello World!");
+
+        StackPane root = new StackPane();
+        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.show();
+    }
 
     public static void main(String[] args) {
 	    GameField sudoku = new GameField();
@@ -55,5 +68,7 @@ public class Main {
 
         System.out.println("SOLVED");
         sudoku.print();
+
+        launch(args);
     }
 }
