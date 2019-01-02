@@ -34,6 +34,12 @@ public class GameField {
         }
     }
 
+    public void set (int rowNum, int columnNum, int value) {
+        checkCoordsValidity(rowNum, columnNum);
+
+        field[rowNum][columnNum] = value;
+    }
+
     public boolean tryToSet (int rowNum, int columnNum, int value) {
         checkCoordsValidity(rowNum, columnNum);
 
@@ -140,5 +146,16 @@ public class GameField {
         }
 
         return null;
+    }
+
+    public void print () {
+        for (int i = 0; i < field.length; i++) {
+            System.out.println();
+            for (int j = 0; j < field[0].length; j++) {
+                System.out.print(field[i][j] + " | ");
+            }
+        }
+
+        System.out.println();
     }
 }
