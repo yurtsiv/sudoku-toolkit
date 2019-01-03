@@ -1,6 +1,6 @@
-package sudoku.solver;
+package logic.sudoku.solver;
 
-import sudoku.GameField;
+import logic.sudoku.GameField;
 
 public interface SudokuSolver {
     boolean solve (GameField gameField);

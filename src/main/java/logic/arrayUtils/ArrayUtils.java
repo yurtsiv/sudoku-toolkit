@@ -1,4 +1,4 @@
-package arrayUtils;
+package logic.arrayUtils;
 
 import java.util.Arrays;
 

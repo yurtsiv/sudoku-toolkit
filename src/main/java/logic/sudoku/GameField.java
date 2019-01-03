@@ -1,8 +1,6 @@
-package sudoku;
+package logic.sudoku;
 
-import arrayUtils.ArrayUtils;
-
-import java.util.ArrayList;
+import logic.arrayUtils.ArrayUtils;
 
 public class GameField {
     private int[][] field = new int[9][9];
