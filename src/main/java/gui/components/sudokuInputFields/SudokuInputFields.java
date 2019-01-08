@@ -38,7 +38,7 @@ public class SudokuInputFields {
 
                 TextField input = new TextField();
                 input.setPrefSize(50, 50);
-                input.setFont(Font.font("Verdana", FontWeight.NORMAL, 20));
+                input.setFont(new Font(20));
                 input.setAlignment(Pos.CENTER);
 
                 input.textProperty().addListener(

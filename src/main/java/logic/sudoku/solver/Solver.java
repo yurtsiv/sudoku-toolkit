@@ -9,7 +9,7 @@ public class Solver {
         this.solver = new BacktrackingSolver();
     }
 
-    public void solve (GameField gameField) {
-        solver.solve(gameField);
+    public GameField solve (GameField gameField) {
+        return solver.solve(gameField);
     }
 }

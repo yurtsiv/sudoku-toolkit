@@ -146,6 +146,17 @@ public class GameField {
         return null;
     }
 
+    public GameField cloneField() {
+        GameField cloned = new GameField();
+        for (int i = 0; i < field.length; i++) {
+           for (int j = 0; j < field[0].length; j++) {
+               cloned.set(i, j, field[i][j]);
+           }
+        }
+
+        return cloned;
+    }
+
     public void print () {
         for (int i = 0; i < field.length; i++) {
             System.out.println();

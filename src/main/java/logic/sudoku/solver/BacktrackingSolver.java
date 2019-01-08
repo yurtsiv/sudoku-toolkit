@@ -3,11 +3,7 @@ package logic.sudoku.solver;
 import logic.sudoku.GameField;
 
 public class BacktrackingSolver implements SudokuSolver {
-    public boolean solve (GameField gameField) {
-        if (!gameField.isValid()) {
-            throw new IllegalArgumentException("Invalid game field provided");
-        }
-
+    private static boolean solveRecursively(GameField gameField) {
         int[] unassignedPosition = gameField.getFirstUnassignedPosition();
         if (unassignedPosition == null) {
             return true;
@@ -15,7 +11,7 @@ public class BacktrackingSolver implements SudokuSolver {
 
         for (int i = 1; i <= gameField.getSize(); i++) {
             if (gameField.tryToSet(unassignedPosition[0], unassignedPosition[1], i)) {
-                if (solve(gameField)) {
+                if (BacktrackingSolver.solveRecursively(gameField)) {
                     return true;
                 }
 
@@ -24,5 +20,15 @@ public class BacktrackingSolver implements SudokuSolver {
         }
 
         return false;
+    }
+
+    public GameField solve (GameField gameField) {
+        if (!gameField.isValid()) {
+            throw new IllegalArgumentException("Invalid game field provided");
+        }
+
+        GameField clonedField = gameField.cloneField();
+        BacktrackingSolver.solveRecursively(clonedField);
+        return clonedField;
     }
 }

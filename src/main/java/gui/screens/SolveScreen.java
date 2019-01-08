@@ -3,6 +3,7 @@ package gui.screens;
 import gui.components.sudokuInputFields.SudokuInputFields;
 import gui.components.sudokuView.SudokuView;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import logic.sudoku.GameField;
@@ -12,6 +13,7 @@ public class SolveScreen {
     private VBox content = new VBox();
     private GameField gameField = new GameField();
     private Text errorMessage = new Text();
+    private GridPane solvedSudokuView;
 
     public VBox create() {
         content.getChildren().add(errorMessage);
@@ -21,19 +23,22 @@ public class SolveScreen {
 
         Button solveBtn = new Button("SOLVE");
         solveBtn.setOnAction((e) -> {
-            errorMessage.setText("");
-            Solver solver = new Solver();
-
-            try {
-                solver.solve(gameField);
-            } catch (Exception error) {
-                errorMessage.setText(error.getMessage());
-                return;
+            if (solvedSudokuView != null) {
+                content.getChildren().remove(solvedSudokuView);
             }
 
-            content.getChildren().add(
-               SudokuView.create(gameField)
-            );
+            errorMessage.setText("");
+            gameField.print();
+            Solver solver = new Solver();
+
+
+            try {
+                GameField solved = solver.solve(gameField);
+                solvedSudokuView = SudokuView.create(solved);
+                content.getChildren().add(solvedSudokuView);
+            } catch (Exception error) {
+                errorMessage.setText(error.getMessage());
+            }
         });
 
         content.getChildren().add(solveBtn);
