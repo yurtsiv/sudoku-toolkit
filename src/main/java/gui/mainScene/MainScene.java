@@ -15,7 +15,7 @@ public class MainScene {
         mainMenu.setMenuItemClickListener((menuItem -> {
             switch (menuItem) {
                 case SOLVE_SUDOKU:
-                    mainLayout.setCenter(SolveScreen.create());
+                    mainLayout.setCenter(new SolveScreen().create());
                     break;
 
                 case GENERATE_SUDOKU:
@@ -23,7 +23,7 @@ public class MainScene {
             }
         }));
 
-        mainLayout.setCenter(SolveScreen.create());
+        mainLayout.setCenter(new SolveScreen().create());
         mainLayout.setLeft(mainMenu.create());
         mainStage.setScene(new Scene(mainLayout, 800, 800));
         mainStage.show();

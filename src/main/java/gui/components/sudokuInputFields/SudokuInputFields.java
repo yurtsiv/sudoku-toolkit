@@ -1,8 +1,11 @@
-package gui.components.SudokuInputFields;
+package gui.components.sudokuInputFields;
 
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 import java.util.ArrayList;
 
@@ -34,9 +37,14 @@ public class SudokuInputFields {
                 final int column = j;
 
                 TextField input = new TextField();
+                input.setPrefSize(50, 50);
+                input.setFont(Font.font("Verdana", FontWeight.NORMAL, 20));
+                input.setAlignment(Pos.CENTER);
+
                 input.textProperty().addListener(
                     (ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
                         if (newValue.length() == 0) {
+                            onCellChange(row, column, 0);
                             return;
                         }
 
