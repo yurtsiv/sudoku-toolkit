@@ -1,18 +1,30 @@
 package gui.mainScene;
 
-import gui.components.GameFieldComponent;
+import gui.components.mainMenu.MainMenu;
+import gui.screens.GenerateScreen;
+import gui.screens.SolveScreen;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import logic.sudoku.GameField;
 
 public class MainScene {
+    private BorderPane mainLayout = new BorderPane();
+
     public void start(Stage mainStage) {
-        BorderPane mainLayout = new BorderPane();
+        MainMenu mainMenu = new MainMenu();
+        mainMenu.setMenuItemClickListener((menuItem -> {
+            switch (menuItem) {
+                case SOLVE_SUDOKU:
+                    mainLayout.setCenter(SolveScreen.create());
+                    break;
 
-        GameField gameField = new GameField();
+                case GENERATE_SUDOKU:
+                    mainLayout.setCenter(GenerateScreen.create());
+            }
+        }));
 
-        mainLayout.setCenter(GameFieldComponent.create(gameField));
+        mainLayout.setCenter(SolveScreen.create());
+        mainLayout.setLeft(mainMenu.create());
         mainStage.setScene(new Scene(mainLayout, 800, 800));
         mainStage.show();
     }
