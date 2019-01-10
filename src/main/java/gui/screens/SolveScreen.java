@@ -28,12 +28,15 @@ public class SolveScreen {
             }
 
             errorMessage.setText("");
+            System.out.println("Entered Matrix:");
             gameField.print();
             Solver solver = new Solver();
 
 
             try {
                 GameField solved = solver.solve(gameField);
+                System.out.println("Solved:");
+                solved.print();
                 solvedSudokuView = SudokuView.create(solved);
                 content.getChildren().add(solvedSudokuView);
             } catch (Exception error) {

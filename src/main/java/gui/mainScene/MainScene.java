@@ -25,7 +25,7 @@ public class MainScene {
 
         mainLayout.setCenter(new SolveScreen().create());
         mainLayout.setLeft(mainMenu.create());
-        mainStage.setScene(new Scene(mainLayout, 800, 800));
+        mainStage.setScene(new Scene(mainLayout, 1000, 1000));
         mainStage.show();
     }
 }

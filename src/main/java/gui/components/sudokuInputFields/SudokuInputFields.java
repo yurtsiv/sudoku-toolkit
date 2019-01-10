@@ -61,7 +61,7 @@ public class SudokuInputFields {
                     }
                 );
 
-                GridPane.setConstraints(input, i, j);
+                GridPane.setConstraints(input, column, row);
                 grid.getChildren().add(input);
             }
         }

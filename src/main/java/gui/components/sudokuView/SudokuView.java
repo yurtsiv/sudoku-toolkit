@@ -14,19 +14,19 @@ public class SudokuView {
         GridPane grid = new GridPane();
         int size = gameField.getSize();
 
-        for (int i = 0; i < size; i++) {
-            ColumnConstraints column = new ColumnConstraints(50);
-            RowConstraints row = new RowConstraints(50);
-            grid.getColumnConstraints().add(column);
-            grid.getRowConstraints().add(row);
+        for (int row = 0; row < size; row++) {
+            ColumnConstraints columnConstraints = new ColumnConstraints(50);
+            RowConstraints rowConstraints = new RowConstraints(50);
+            grid.getColumnConstraints().add(columnConstraints);
+            grid.getRowConstraints().add(rowConstraints);
 
-            for (int j = 0; j < size; j++) {
-                String text = Integer.toString(gameField.get(i, j));
+            for (int column = 0; column < size; column++) {
+                String text = Integer.toString(gameField.get(row, column));
                 Text textNode = new Text(text);
                 GridPane.setValignment(textNode, VPos.CENTER);
                 GridPane.setHalignment(textNode, HPos.CENTER);
                 textNode.setFont(new Font(20));
-                GridPane.setConstraints(textNode, i, j);
+                GridPane.setConstraints(textNode, column, row);
                 grid.getChildren().add(textNode);
             }
         }
