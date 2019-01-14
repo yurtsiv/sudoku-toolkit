@@ -8,11 +8,23 @@
 .main-menu-container {
     -fx-pref-width: 300px;
     -fx-pref-height: 100%;
-    -fx-background: #000;
+    -fx-background-color: #222;
+}
+
+.main-menu-item:active {
+    -fx-background-color: #333;
+}
+
+.main-menu-item:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #333;
 }
 
 .main-menu-item {
+    -fx-pref-height: 50px;
     -fx-pref-width: 300px;
+    -fx-text-fill: #fff;
+    -fx-background-color: #222;
 }
 
 .field-cell {

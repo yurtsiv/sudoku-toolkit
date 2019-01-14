@@ -9,8 +9,17 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
+import java.util.HashMap;
+
 public class MainScene {
     private BorderPane mainLayout = new BorderPane();
+    private HashMap<String, Double> config = new HashMap<>();
+
+    public MainScene() {
+        Rectangle2D primaryScreenBound = Screen.getPrimary().getVisualBounds();
+        config.put("screenHeight", primaryScreenBound.getHeight());
+        config.put("screenWidth", primaryScreenBound.getWidth());
+    }
 
     public void start(Stage mainStage) {
         MainMenu mainMenu = new MainMenu();
@@ -26,12 +35,12 @@ public class MainScene {
         }));
 
         mainLayout.setCenter(new SolveScreen().create());
-        mainLayout.setLeft(mainMenu.create());
-        Rectangle2D primaryScreenBound = Screen.getPrimary().getVisualBounds();
+        mainLayout.setLeft(mainMenu.create(config));
 
-        Scene scene = new Scene(mainLayout, primaryScreenBound.getWidth(), primaryScreenBound.getHeight());
+        Scene scene = new Scene(mainLayout, config.get("screenWidth"), config.get("screenHeight"));
 
         scene.getStylesheets().add("main.css");
+        mainStage.setTitle("Sudoku Toolkit");
         mainStage.setScene(scene);
         mainStage.show();
     }
