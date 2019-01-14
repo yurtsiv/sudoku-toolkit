@@ -62,11 +62,24 @@
 .action-button {
     -fx-border-width: 0;
     -fx-border-radius: 0;
-    -fx-font-size: 20;
+    -fx-font-size: 23;
     -fx-background-color: #007bff;
     -fx-text-fill: #fff;
 }
 
 .action-button:hover {
     -fx-cursor: hand;
+}
+
+.action-button .solve-btn {
+    -fx-padding: 10px 0 10px 0;
+}
+
+.logo {
+    -fx-padding: 20px 0 20px 0;
+}
+
+.solve-sudoku-page-content {
+    -fx-padding: 100px 0 0 0;
+    -fx-alignment: center;
 }

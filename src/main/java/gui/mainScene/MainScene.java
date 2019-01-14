@@ -25,7 +25,7 @@ public class MainScene {
     }
 
     private void loadAssets(Scene scene) {
-        scene.getStylesheets().addAll("main.css", "specific.css");
+        scene.getStylesheets().add("main.css");
     }
 
     public void start() {
