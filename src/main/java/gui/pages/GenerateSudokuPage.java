@@ -1,12 +1,14 @@
-package gui.screens;
+package gui.pages;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
+import java.util.HashMap;
 
-public class GenerateScreen {
-    public static Pane create() {
+
+public class GenerateSudokuPage implements PageInterface {
+    public Pane create(HashMap<String, Double> config) {
         HBox layout = new HBox();
         Button btn = new Button("Hello");
         layout.getChildren().add(btn);

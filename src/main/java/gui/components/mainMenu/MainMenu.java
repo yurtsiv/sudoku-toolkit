@@ -1,18 +1,25 @@
 package gui.components.mainMenu;
 
+import gui.components.ComponentInterface;
 import javafx.css.PseudoClass;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+
 import java.util.HashMap;
 
-public class MainMenu {
+public class MainMenu implements ComponentInterface {
     private OnMenuItemClickListener clickListener;
     private HashMap<MenuItem, Button> menuButtons = new HashMap<>();
     private PseudoClass activePseudoClass = PseudoClass.getPseudoClass("active");
+    private HashMap<String, Double> uiConfig;
+    private MenuItem defaultActiveMenuItem;
+
+    public MainMenu(HashMap<String, Double> uiConfig, MenuItem defaultActiveMenuItem) {
+        this.uiConfig = uiConfig;
+        this.defaultActiveMenuItem = defaultActiveMenuItem;
+    }
 
     public void setMenuItemClickListener(OnMenuItemClickListener listener) {
         clickListener = listener;
@@ -30,26 +37,25 @@ public class MainMenu {
     }
 
 
-    public VBox create(HashMap<String, Double> config, MenuItem defaultActie) {
+    public VBox create() {
         VBox menuLayout = new VBox();
-        menuLayout.setMaxHeight(config.get("screenHeight"));
+        menuLayout.setMaxHeight(uiConfig.get("screenHeight"));
         menuLayout.getStyleClass().add("main-menu-container");
-        menuLayout.setAlignment(Pos.TOP_CENTER);
-        menuLayout.setPadding(new Insets(30, 0, 0, 0));
 
         VBox buttonsContainer = new VBox();
-        buttonsContainer.setPadding(new Insets(30, 0, 0, 0));
+        buttonsContainer.getStyleClass().add("main-menu-buttons-container");
 
         ImageView logo = new ImageView(new Image("sudoku.png"));
         logo.getStyleClass().add("logo");
         logo.setPreserveRatio(true);
         logo.setFitWidth(100);
         menuLayout.getChildren().add(logo);
+
         for (MenuItem item : MenuItem.values()) {
 
             String title = String.join(" ", item.name().split("_"));
             Button menuButton = new Button(title);
-            if (item == defaultActie) {
+            if (item == defaultActiveMenuItem) {
                 menuButton.pseudoClassStateChanged(activePseudoClass, true);
             }
 

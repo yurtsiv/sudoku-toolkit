@@ -5,3 +5,8 @@
 .logo {
     -fx-padding: 20px 0 20px 0;
 }
+
+.solve-sudoku-page-content {
+    -fx-padding: 100px 0 0 0;
+    -fx-alignment: center;
+}

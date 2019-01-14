@@ -1,27 +1,27 @@
-package gui.screens;
+package gui.pages;
 
 import gui.components.sudokuInputFields.SudokuInputFields;
 import gui.components.sudokuView.SudokuView;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import logic.sudoku.GameField;
-import logic.sudoku.solver.Solver;
+import logic.sudoku.solver.SudokuSolver;
 
-public class SolveScreen {
-    private HBox content = new HBox(50);
+import java.util.HashMap;
+
+public class SolveSudokuPage implements PageInterface {
+    private HBox pageContent = new HBox(50);
     private GameField gameField = new GameField();
-    private GridPane solvedSudokuView;
+    private Pane solvedSudokuView;
     private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
 
-    public HBox create() {
-        content.setPadding(new Insets(100, 0, 0, 0));
-        content.setAlignment(Pos.CENTER);
+    public Pane create(HashMap<String, Double> config) {
+        pageContent.getStyleClass().add("solve-sudoku-page-content");
 
         SudokuInputFields inputFields = new SudokuInputFields(gameField.getSize());
         inputFields.addObserver(((row, column, value) -> gameField.set(row, column, value)));
@@ -30,20 +30,19 @@ public class SolveScreen {
         solveBtn.getStyleClass().addAll("action-button", "solve-btn");
         solveBtn.setOnAction((e) -> {
             if (solvedSudokuView != null) {
-                content.getChildren().remove(solvedSudokuView);
+                pageContent.getChildren().remove(solvedSudokuView);
             }
 
             System.out.println("Entered Matrix:");
             gameField.print();
-            Solver solver = new Solver();
-
+            SudokuSolver sudokuSolver = new SudokuSolver();
 
             try {
-                GameField solved = solver.solve(gameField);
+                GameField solvedSudoku = sudokuSolver.solve(gameField);
                 System.out.println("Solved:");
-                solved.print();
-                solvedSudokuView = SudokuView.create(solved);
-                content.getChildren().add(solvedSudokuView);
+                solvedSudoku.print();
+                solvedSudokuView = new SudokuView(solvedSudoku).create();
+                pageContent.getChildren().add(solvedSudokuView);
             } catch (Exception error) {
                 error.printStackTrace();
                 errorAlert.setTitle("Error");
@@ -54,8 +53,8 @@ public class SolveScreen {
 
         VBox sudokuInputContainer = new VBox(10);
         sudokuInputContainer.getChildren().addAll(inputFields.create(), solveBtn);
-        content.getChildren().add(sudokuInputContainer);
+        pageContent.getChildren().add(sudokuInputContainer);
 
-        return content;
+        return pageContent;
     }
 }

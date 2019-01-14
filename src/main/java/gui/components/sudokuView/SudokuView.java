@@ -1,18 +1,21 @@
 package gui.components.sudokuView;
 
+import gui.components.ComponentInterface;
 import javafx.css.PseudoClass;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.sudoku.GameField;
 
-public class SudokuView {
-    public static GridPane create(GameField gameField) {
+public class SudokuView implements ComponentInterface {
+    private GameField gameField;
+
+    public SudokuView(GameField gameField) {
+        this.gameField = gameField;
+    }
+
+    public Pane create() {
         GridPane grid = new GridPane();
         int size = gameField.getSize();
 
@@ -29,8 +32,6 @@ public class SudokuView {
 
                 String text = Integer.toString(gameField.get(row, column));
                 Text textNode = new Text(text);
-                GridPane.setValignment(textNode, VPos.CENTER);
-                GridPane.setHalignment(textNode, HPos.CENTER);
                 cell.getChildren().add(textNode);
                 grid.getChildren().add(cell);
             }

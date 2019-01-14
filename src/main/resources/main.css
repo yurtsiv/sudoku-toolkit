@@ -2,7 +2,13 @@
     -fx-background: #fff;
 }
 
+.main-menu-buttons-container {
+    -fx-padding: 30 0 0 0;
+}
+
 .main-menu-container {
+    -fx-padding: 30px 0 0 0;
+    -fx-alignment: top-center;
     -fx-pref-width: 300px;
     -fx-background-color: #222;
 }

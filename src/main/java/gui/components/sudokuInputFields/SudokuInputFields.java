@@ -1,15 +1,15 @@
 package gui.components.sudokuInputFields;
 
+import gui.components.ComponentInterface;
 import javafx.beans.value.ObservableValue;
 import javafx.css.PseudoClass;
-import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import java.util.ArrayList;
 
 
-public class SudokuInputFields {
+public class SudokuInputFields implements ComponentInterface {
     final private int size;
     private ArrayList<OnCellInputChangeObserver> observers = new ArrayList<>();
 

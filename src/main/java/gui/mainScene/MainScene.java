@@ -2,47 +2,56 @@ package gui.mainScene;
 
 import gui.components.mainMenu.MainMenu;
 import gui.components.mainMenu.MenuItem;
-import gui.screens.GenerateScreen;
-import gui.screens.SolveScreen;
+import gui.pages.GenerateSudokuPage;
+import gui.pages.SolveSudokuPage;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-
-import java.awt.*;
 import java.util.HashMap;
 
 public class MainScene {
+    private Stage mainStage;
     private BorderPane mainLayout = new BorderPane();
-    private HashMap<String, Double> config = new HashMap<>();
+    private HashMap<String, Double> uiConfig = new HashMap<>();
 
-    public MainScene() {
+    public MainScene(Stage mainStage) {
+        this.mainStage = mainStage;
         Rectangle2D primaryScreenBound = Screen.getPrimary().getVisualBounds();
-        config.put("screenHeight", primaryScreenBound.getHeight());
-        config.put("screenWidth", primaryScreenBound.getWidth());
+        uiConfig.put("screenHeight", primaryScreenBound.getHeight());
+        uiConfig.put("screenWidth", primaryScreenBound.getWidth());
     }
 
-    public void start(Stage mainStage) {
-        MainMenu mainMenu = new MainMenu();
+    private void loadAssets(Scene scene) {
+        scene.getStylesheets().addAll("main.css", "specific.css");
+    }
+
+    public void start() {
+        mainStage.setTitle("Sudoku Toolkit");
+
+        MainMenu mainMenu = new MainMenu(uiConfig, MenuItem.SOLVE_SUDOKU);
+        Pane solveSudokuPage = new SolveSudokuPage().create(uiConfig);
+        Pane generateSudokuPage = new GenerateSudokuPage().create(uiConfig);
+
         mainMenu.setMenuItemClickListener((menuItem -> {
             switch (menuItem) {
                 case SOLVE_SUDOKU:
-                    mainLayout.setCenter(new SolveScreen().create());
+                    mainLayout.setCenter(solveSudokuPage);
                     break;
 
                 case GENERATE_SUDOKU:
-                    mainLayout.setCenter(GenerateScreen.create());
+                    mainLayout.setCenter(generateSudokuPage);
             }
         }));
 
-        mainLayout.setCenter(new SolveScreen().create());
-        mainLayout.setLeft(mainMenu.create(config, MenuItem.SOLVE_SUDOKU));
+        mainLayout.setCenter(solveSudokuPage);
+        mainLayout.setLeft(mainMenu.create());
 
-        Scene scene = new Scene(mainLayout, config.get("screenWidth"), config.get("screenHeight"));
+        Scene scene = new Scene(mainLayout, uiConfig.get("screenWidth"), uiConfig.get("screenHeight"));
+        loadAssets(scene);
 
-        scene.getStylesheets().add("main.css");
-        mainStage.setTitle("Sudoku Toolkit");
         mainStage.setScene(scene);
         mainStage.show();
     }
