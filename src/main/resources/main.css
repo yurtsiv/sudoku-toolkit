@@ -2,12 +2,8 @@
     -fx-background: #fff;
 }
 
-.game-field-container {
-}
-
 .main-menu-container {
     -fx-pref-width: 300px;
-    -fx-pref-height: 100%;
     -fx-background-color: #222;
 }
 
@@ -28,14 +24,21 @@
 }
 
 .field-cell {
-    -fx-pref-width: 50px;
-    -fx-pref-height: 50px;
+    -fx-font-size: 20;
+    -fx-pref-width: 60px;
+    -fx-pref-height: 60px;
 
-    -fx-background-color:  black, #fff;
+    -fx-background-color:  #666, #fff;
 
     -fx-background-insets: 0, 0 ;
+    -fx-text-alignment: center;
+    -fx-padding: 5px;
+}
 
-    -fx-padding: 5px ;
+.sudoku-input-field {
+    -fx-pref-width: 60px;
+    -fx-pref-height: 60px;
+    -fx-alignment: center;
 }
 
 .field-cell:right {
@@ -53,7 +56,7 @@
 .action-button {
     -fx-border-width: 0;
     -fx-border-radius: 0;
-    -fx-font-size: 18;
+    -fx-font-size: 20;
     -fx-background-color: #007bff;
     -fx-text-fill: #fff;
 }

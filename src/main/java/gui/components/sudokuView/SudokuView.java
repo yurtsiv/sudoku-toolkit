@@ -20,11 +20,6 @@ public class SudokuView {
         PseudoClass bottom = PseudoClass.getPseudoClass("bottom");
 
         for (int row = 0; row < size; row++) {
-            ColumnConstraints columnConstraints = new ColumnConstraints(50);
-            RowConstraints rowConstraints = new RowConstraints(50);
-            grid.getColumnConstraints().add(columnConstraints);
-            grid.getRowConstraints().add(rowConstraints);
-
             for (int column = 0; column < size; column++) {
                 StackPane cell = new StackPane();
                 GridPane.setConstraints(cell, column, row);
@@ -36,8 +31,7 @@ public class SudokuView {
                 Text textNode = new Text(text);
                 GridPane.setValignment(textNode, VPos.CENTER);
                 GridPane.setHalignment(textNode, HPos.CENTER);
-                textNode.setFont(new Font(20));
-                cell.getChildren().add(textNode );
+                cell.getChildren().add(textNode);
                 grid.getChildren().add(cell);
             }
         }

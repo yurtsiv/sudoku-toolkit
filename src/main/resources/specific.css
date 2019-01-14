@@ -1,4 +1,7 @@
 .solve-btn {
-    -fx-padding-left: 5px;
     -fx-padding: 10px 0 10px 0;
+}
+
+.logo {
+    -fx-padding: 20px 0 20px 0;
 }

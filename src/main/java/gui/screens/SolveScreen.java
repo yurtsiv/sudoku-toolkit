@@ -2,6 +2,8 @@ package gui.screens;
 
 import gui.components.sudokuInputFields.SudokuInputFields;
 import gui.components.sudokuView.SudokuView;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -18,6 +20,8 @@ public class SolveScreen {
 
 
     public HBox create() {
+        content.setPadding(new Insets(100, 0, 0, 0));
+        content.setAlignment(Pos.CENTER);
 
         SudokuInputFields inputFields = new SudokuInputFields(gameField.getSize());
         inputFields.addObserver(((row, column, value) -> gameField.set(row, column, value)));

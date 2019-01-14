@@ -6,8 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
-
 import java.util.ArrayList;
 
 
@@ -32,9 +30,7 @@ public class SudokuInputFields {
 
     private TextField createInput(int row, int column) {
         TextField input = new TextField();
-        input.setPrefSize(50, 50);
-        input.setFont(new Font(20));
-        input.setAlignment(Pos.CENTER);
+        input.getStyleClass().add("sudoku-input-field");
 
         input.textProperty().addListener(
             (ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
