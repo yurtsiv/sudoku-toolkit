@@ -19,10 +19,12 @@ public class MainMenu {
 
     public VBox create() {
         VBox menuLayout = new VBox();
+        menuLayout.getStyleClass().add("main-menu-container");
 
         for (MenuItem item : MenuItem.values()) {
             String title = String.join(" ", item.name().split("_"));
             Button menuButton = new Button(title);
+            menuButton.getStyleClass().add("main-menu-item");
             menuButton.setOnAction((e) -> onMenuItemClick(item));
             menuLayout.getChildren().add(menuButton);
         }

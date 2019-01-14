@@ -1,0 +1,51 @@
+.root {
+    -fx-background: #fff;
+}
+
+.game-field-container {
+}
+
+.main-menu-container {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 100%;
+    -fx-background: #000;
+}
+
+.main-menu-item {
+    -fx-pref-width: 300px;
+}
+
+.field-cell {
+    -fx-pref-width: 50px;
+    -fx-pref-height: 50px;
+
+    -fx-background-color:  black, #fff;
+
+    -fx-background-insets: 0, 0 ;
+
+    -fx-padding: 5px ;
+}
+
+.field-cell:right {
+    -fx-background-insets: 0, 0 1 0 0 ;
+}
+
+.field-cell:bottom {
+    -fx-background-insets: 0, 0 0 1 0 ;
+}
+
+.field-cell:right:bottom {
+    -fx-background-insets: 0, 0 1 1 0 ;
+}
+
+.action-button {
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-font-size: 18;
+    -fx-background-color: #007bff;
+    -fx-text-fill: #fff;
+}
+
+.action-button:hover {
+    -fx-cursor: hand;
+}

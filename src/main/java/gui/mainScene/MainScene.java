@@ -3,7 +3,9 @@ package gui.mainScene;
 import gui.components.mainMenu.MainMenu;
 import gui.screens.GenerateScreen;
 import gui.screens.SolveScreen;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
@@ -25,7 +27,12 @@ public class MainScene {
 
         mainLayout.setCenter(new SolveScreen().create());
         mainLayout.setLeft(mainMenu.create());
-        mainStage.setScene(new Scene(mainLayout, 1000, 1000));
+        Rectangle2D primaryScreenBound = Screen.getPrimary().getVisualBounds();
+
+        Scene scene = new Scene(mainLayout, primaryScreenBound.getWidth(), primaryScreenBound.getHeight());
+
+        scene.getStylesheets().add("main.css");
+        mainStage.setScene(scene);
         mainStage.show();
     }
 }
