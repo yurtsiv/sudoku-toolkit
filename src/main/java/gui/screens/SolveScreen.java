@@ -2,6 +2,7 @@ package gui.screens;
 
 import gui.components.sudokuInputFields.SudokuInputFields;
 import gui.components.sudokuView.SudokuView;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -12,11 +13,11 @@ import logic.sudoku.solver.Solver;
 public class SolveScreen {
     private VBox content = new VBox();
     private GameField gameField = new GameField();
-    private Text errorMessage = new Text();
     private GridPane solvedSudokuView;
+    private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+
 
     public VBox create() {
-        content.getChildren().add(errorMessage);
         SudokuInputFields inputFields = new SudokuInputFields(gameField.getSize());
         content.getChildren().add(inputFields.create());
         inputFields.addObserver(((row, column, value) -> gameField.set(row, column, value)));
@@ -27,7 +28,6 @@ public class SolveScreen {
                 content.getChildren().remove(solvedSudokuView);
             }
 
-            errorMessage.setText("");
             System.out.println("Entered Matrix:");
             gameField.print();
             Solver solver = new Solver();
@@ -40,7 +40,9 @@ public class SolveScreen {
                 solvedSudokuView = SudokuView.create(solved);
                 content.getChildren().add(solvedSudokuView);
             } catch (Exception error) {
-                errorMessage.setText(error.getMessage());
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText(error.getMessage());
+                errorAlert.showAndWait();
             }
         });
 
