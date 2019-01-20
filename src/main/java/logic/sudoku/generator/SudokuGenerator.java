@@ -18,9 +18,17 @@ public class SudokuGenerator {
         }
     }
 
+    private static void unsetFields(GameField gameField, int[][] mask) {
+       for (int[] coord : mask) {
+           gameField.set(coord[0], coord[1], 0);
+       }
+    }
+
     public static GameField generate(SudokuDifficulty difficulty) {
         GameField result = SudokuSolver.solve(new GameField());
         SudokuGenerator.makePermutations(result);
+        SudokuGenerator.unsetFields(result, SudokuMasks.getMask(difficulty));
+        result.print();
         return result;
     }
 }

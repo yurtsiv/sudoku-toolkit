@@ -1,8 +1,8 @@
 package logic.utils;
 
 public class RandomNums {
-    private static int randomInt(int from, int to) {
-        if (from >= to) {
+    public static int randomInt(int from, int to) {
+        if (from > to) {
             throw new IllegalArgumentException("from >= to");
         }
 
