@@ -27,7 +27,7 @@ public class SudokuGenerator {
     public static GameField generate(SudokuDifficulty difficulty) {
         GameField result = SudokuSolver.solve(new GameField());
         SudokuGenerator.makePermutations(result);
-        SudokuGenerator.unsetFields(result, SudokuMasks.getMask(difficulty));
+        SudokuGenerator.unsetFields(result, SudokuGenerationMasks.getMask(difficulty));
         result.print();
         return result;
     }
