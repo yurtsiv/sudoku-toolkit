@@ -35,10 +35,9 @@ public class SolveSudokuPage implements PageInterface {
 
             System.out.println("Entered Matrix:");
             gameField.print();
-            SudokuSolver sudokuSolver = new SudokuSolver();
 
             try {
-                GameField solvedSudoku = sudokuSolver.solve(gameField);
+                GameField solvedSudoku = SudokuSolver.solve(gameField);
                 System.out.println("Solved:");
                 solvedSudoku.print();
                 solvedSudokuView = new SudokuView(solvedSudoku).create();

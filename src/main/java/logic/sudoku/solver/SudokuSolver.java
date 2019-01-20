@@ -22,7 +22,7 @@ public class SudokuSolver {
         return false;
     }
 
-    public GameField solve (GameField gameField) {
+    public static GameField solve (GameField gameField) {
         if (!gameField.isValid()) {
             throw new IllegalArgumentException("Invalid game field provided");
         }

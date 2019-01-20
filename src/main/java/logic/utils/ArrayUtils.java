@@ -1,4 +1,4 @@
-package logic.arrayUtils;
+package logic.utils;
 
 import java.util.Arrays;
 
@@ -30,15 +30,5 @@ public class ArrayUtils {
         }
 
         return result;
-    }
-
-    public static boolean contains (int[] arr, int elemToFind) {
-        for (int elem : arr) {
-            if (elem == elemToFind) {
-                return true;
-            }
-        }
-
-        return false;
     }
 }

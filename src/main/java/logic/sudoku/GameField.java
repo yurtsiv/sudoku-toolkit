@@ -1,6 +1,6 @@
 package logic.sudoku;
 
-import logic.arrayUtils.ArrayUtils;
+import logic.utils.ArrayUtils;
 
 public class GameField {
     private int[][] field = new int[9][9];
@@ -10,7 +10,7 @@ public class GameField {
 
         subGridsMap[subGridNum] = { fromRow, toRow, fromColumn, toColumn }
      */
-    private final int[][] subGridsMap = new int[][]{
+    private final static int[][] subGridsMap = new int[][]{
         { 0, 2, 0, 2 },
         { 0, 2, 3, 5 },
         { 0, 2, 6, 8 },
@@ -24,6 +24,10 @@ public class GameField {
 
     public int getSize () {
         return 9;
+    }
+
+    public int[][] getSubgridsMap() {
+        return subGridsMap;
     }
 
     private void checkCoordsValidity (int rowNum, int columnNum) {
@@ -118,22 +122,6 @@ public class GameField {
         return true;
     }
 
-    public boolean isSolved () {
-        if (!isValid()) {
-            return false;
-        }
-
-        for (int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field[0].length; j++) {
-                if (field[i][j] == 0) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
     public int[] getFirstUnassignedPosition () {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[0].length; j++) {
@@ -158,13 +146,37 @@ public class GameField {
     }
 
     public void print () {
-        for (int i = 0; i < field.length; i++) {
+        for (int[] row : field) {
             System.out.println();
-            for (int j = 0; j < field[0].length; j++) {
-                System.out.print(field[i][j] + " | ");
+            for (int cell : row) {
+                System.out.print(cell + " | ");
             }
         }
 
         System.out.println();
+    }
+
+    public void switchRows(int row1, int row2) {
+        checkCoordsValidity(row1, row2);
+        if (row1 == row2) {
+            return;
+        }
+
+        int[] tempRow1 = field[row1];
+        field[row1] = field[row2];
+        field[row2] = tempRow1;
+    }
+
+    public void switchColumns(int column1, int column2) {
+        checkCoordsValidity(column1, column2);
+        if (column1 == column2) {
+            return;
+        }
+
+        for (int[] row : field) {
+            int tempColumn1 = row[column1];
+            row[column1] = row[column2];
+            row[column2] = tempColumn1;
+        }
     }
 }
