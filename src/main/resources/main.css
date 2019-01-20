@@ -30,9 +30,9 @@
 }
 
 .field-cell {
-    -fx-font-size: 20;
-    -fx-pref-width: 60px;
-    -fx-pref-height: 60px;
+    -fx-font-size: 25;
+    -fx-pref-width: 70px;
+    -fx-pref-height: 70px;
 
     -fx-background-color:  #666, #fff;
 
@@ -42,8 +42,8 @@
 }
 
 .sudoku-input-field {
-    -fx-pref-width: 60px;
-    -fx-pref-height: 60px;
+    -fx-pref-width: 70px;
+    -fx-pref-height: 70px;
     -fx-alignment: center;
 }
 
@@ -62,7 +62,7 @@
 .action-button {
     -fx-border-width: 0;
     -fx-border-radius: 0;
-    -fx-font-size: 23;
+    -fx-font-size: 22;
     -fx-background-color: #007bff;
     -fx-text-fill: #fff;
 }
