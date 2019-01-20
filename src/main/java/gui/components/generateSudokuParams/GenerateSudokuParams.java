@@ -17,13 +17,13 @@ public class GenerateSudokuParams implements ComponentInterface {
     }
 
     public Pane create() {
-        layout.getStyleClass().add("generate-sudoku-options");
+        layout.getStyleClass().addAll("align-center", "generate-sudoku-options");
 
         ComboBox difficultySelect = new ComboBox<SudokuDifficulty>();
         for (SudokuDifficulty difficulty : SudokuDifficulty.values()) {
             difficultySelect.getItems().add(difficulty);
         }
-        difficultySelect.setValue(SudokuDifficulty.EASY.name());
+        difficultySelect.setValue(SudokuDifficulty.EASY);
 
         CheckBox showSolutionCheckBox = new CheckBox("Show solution");
         showSolutionCheckBox.setSelected(false);

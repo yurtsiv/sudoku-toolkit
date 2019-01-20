@@ -30,7 +30,8 @@ public class SudokuView implements ComponentInterface {
                 cell.pseudoClassStateChanged(right, column == 2 || column == 5);
                 cell.pseudoClassStateChanged(bottom, row == 2  || row == 5);
 
-                String text = Integer.toString(gameField.get(row, column));
+                int cellValue = gameField.get(row, column);
+                String text = cellValue == 0 ? "·" : Integer.toString(gameField.get(row, column));
                 Text textNode = new Text(text);
                 cell.getChildren().add(textNode);
                 grid.getChildren().add(cell);

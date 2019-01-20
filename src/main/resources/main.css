@@ -84,7 +84,10 @@
     -fx-alignment: center;
 }
 
-.generate-sudoku-options {
+.align-center {
     -fx-alignment: center;
-    -fx-padding: 20px;
+}
+
+.generate-sudoku-options {
+    -fx-padding: 32px;
 }
