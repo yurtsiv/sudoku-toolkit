@@ -32,8 +32,8 @@ public class MainScene {
         mainStage.setTitle("Sudoku Toolkit");
 
         MainMenu mainMenu = new MainMenu(uiConfig, MenuItem.SOLVE_SUDOKU);
-        Pane solveSudokuPage = new SolveSudokuPage().create(uiConfig);
-        Pane generateSudokuPage = new GenerateSudokuPage().create(uiConfig);
+        Pane solveSudokuPage = new SolveSudokuPage().create(uiConfig, mainStage);
+        Pane generateSudokuPage = new GenerateSudokuPage().create(uiConfig, mainStage);
 
         mainMenu.setMenuItemClickListener((menuItem -> {
             switch (menuItem) {

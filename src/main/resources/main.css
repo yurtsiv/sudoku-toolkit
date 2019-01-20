@@ -89,5 +89,5 @@
 }
 
 .generate-sudoku-options {
-    -fx-padding: 32px;
+    -fx-padding: 30px 0 60px 0;
 }

@@ -4,10 +4,10 @@ import gui.components.sudokuInputFields.SudokuInputFields;
 import gui.components.sudokuView.SudokuView;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import logic.sudoku.GameField;
 import logic.sudoku.solver.SudokuSolver;
 
@@ -20,7 +20,7 @@ public class SolveSudokuPage implements PageInterface {
     private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
 
-    public Pane create(HashMap<String, Double> config) {
+    public Pane create(HashMap<String, Double> config, Stage mainStage) {
         pageContent.getStyleClass().add("solve-sudoku-page-content");
 
         SudokuInputFields inputFields = new SudokuInputFields(gameField.getSize());
@@ -28,6 +28,7 @@ public class SolveSudokuPage implements PageInterface {
 
         Button solveBtn = new Button("Solve");
         solveBtn.getStyleClass().addAll("action-button", "solve-btn");
+
         solveBtn.setOnAction((e) -> {
             if (solvedSudokuView != null) {
                 pageContent.getChildren().remove(solvedSudokuView);
