@@ -12,8 +12,11 @@ import java.io.File;
 
 public class ImageGenerator extends Canvas {
     private GameField gameField;
-    private static int canvasSize = 900;
-    private static int cellSize = 100;
+    private static int cellSize = 50;
+    private static int canvasSize = cellSize * 9;
+    private static int fontSize = 30;
+    private static int verticalTextOffset = 37;
+    private static int horizontalTextOffset = 15;
 
     private ImageGenerator(GameField gameField) {
         this.gameField = gameField;
@@ -24,14 +27,14 @@ public class ImageGenerator extends Canvas {
         g2.setBackground(Color.WHITE);
         g2.clearRect(0, 0, this.getWidth(), this.getHeight());
         g2.setColor(Color.BLACK);
-        g2.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+        g2.setFont(new Font("TimesRoman", Font.PLAIN, fontSize));
 
         int fieldSize = gameField.getSize();
 
         for (int row = 0; row < fieldSize; row++) {
             int rowOffset = row == 0 ? cellSize : cellSize * (row + 1);
             if (row == 2 || row == 5) {
-                g2.setStroke(new BasicStroke(5));
+                g2.setStroke(new BasicStroke(3));
             }
 
             if (row != 8) {
@@ -44,7 +47,7 @@ public class ImageGenerator extends Canvas {
                 int columnOffset = column == 0 ? cellSize : cellSize * (column + 1);
 
                 if (column == 2 || column == 5) {
-                    g2.setStroke(new BasicStroke(5));
+                    g2.setStroke(new BasicStroke(3));
                 }
 
                 if (column != 8) {
@@ -58,8 +61,8 @@ public class ImageGenerator extends Canvas {
                     String cellText = String.valueOf(cellValue);
                     g2.drawString(
                         cellText,
-                        (cellSize * column) + 35,
-                        (cellSize * row) + 70
+                        (cellSize * column) + horizontalTextOffset,
+                        (cellSize * row) + verticalTextOffset
                     );
                 }
             }
