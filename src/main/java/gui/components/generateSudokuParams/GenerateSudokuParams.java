@@ -29,7 +29,7 @@ public class GenerateSudokuParams implements ComponentInterface {
         showSolutionCheckBox.setSelected(false);
 
         Button generateBtn = new Button("Generate");
-        generateBtn.getStyleClass().add("action-button");
+        generateBtn.getStyleClass().add("primary-button");
         generateBtn.setOnAction((e) -> {
            if (generateClickListener != null) {
                difficultySelect.valueProperty().get();

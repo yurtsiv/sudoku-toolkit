@@ -59,20 +59,22 @@
     -fx-background-insets: 0, 0 1 1 0 ;
 }
 
-.action-button {
+.primary-button {
+    -fx-background-color: #007bff;
+}
+
+.secondary-button {
+    -fx-background-color: #bbb;
+}
+
+.primary-button,.secondary-button {
     -fx-border-width: 0;
     -fx-border-radius: 0;
-    -fx-font-size: 22;
-    -fx-background-color: #007bff;
+    -fx-font-size: 20;
     -fx-text-fill: #fff;
 }
-
-.action-button:hover {
+.primary-button,.secondary-button:hover {
     -fx-cursor: hand;
-}
-
-.action-button .solve-btn {
-    -fx-padding: 10px 0 10px 0;
 }
 
 .logo {

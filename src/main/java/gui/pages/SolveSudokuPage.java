@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import logic.imageGenerator.ImageGenerator;
 import logic.sudoku.GameField;
 import logic.sudoku.solver.SudokuSolver;
 
@@ -23,6 +24,12 @@ public class SolveSudokuPage implements PageInterface {
 
     private SolveSudokuPage() {}
 
+    private void showError(String message) {
+        errorAlert.setTitle("Error");
+        errorAlert.setHeaderText(message);
+        errorAlert.show();
+    }
+
     public Pane create(HashMap<String, Double> config, Stage mainStage) {
         pageContent.getStyleClass().add("solve-sudoku-page-content");
 
@@ -30,8 +37,7 @@ public class SolveSudokuPage implements PageInterface {
         inputFields.addObserver(((row, column, value) -> gameField.set(row, column, value)));
 
         Button solveBtn = new Button("Solve");
-        solveBtn.getStyleClass().addAll("action-button", "solve-btn");
-
+        solveBtn.getStyleClass().add("primary-button");
         solveBtn.setOnAction((e) -> {
             if (solvedSudokuView != null) {
                 pageContent.getChildren().remove(solvedSudokuView);
@@ -40,18 +46,27 @@ public class SolveSudokuPage implements PageInterface {
 
             try {
                 GameField solvedSudoku = SudokuSolver.solve(gameField);
-                solvedSudokuView = new SudokuView(solvedSudoku).create();
+                solvedSudokuView = new SudokuView(solvedSudoku, mainStage).create();
                 pageContent.getChildren().add(solvedSudokuView);
             } catch (Exception error) {
-                error.printStackTrace();
-                errorAlert.setTitle("Error");
-                errorAlert.setHeaderText(error.getMessage());
-                errorAlert.show();
+                showError(error.getMessage());
             }
+        });
+        Button saveBtn = new Button("Save");
+        saveBtn.getStyleClass().add("secondary-button");
+        saveBtn.setOnAction((e) -> {
+            if (!gameField.isValid()) {
+                showError("Game field is invalid");
+                return;
+            }
+
+            ImageGenerator.generateAndSave(gameField, mainStage);
         });
 
         VBox sudokuInputContainer = new VBox(10);
-        sudokuInputContainer.getChildren().addAll(inputFields.create(), solveBtn);
+        HBox buttonsContainer = new HBox(10);
+        buttonsContainer.getChildren().addAll(solveBtn, saveBtn);
+        sudokuInputContainer.getChildren().addAll(inputFields.create(), buttonsContainer);
         pageContent.getChildren().add(sudokuInputContainer);
 
         return pageContent;
