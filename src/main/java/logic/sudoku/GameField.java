@@ -145,17 +145,6 @@ public class GameField {
         return cloned;
     }
 
-    public void print () {
-        for (int[] row : field) {
-            System.out.println();
-            for (int cell : row) {
-                System.out.print(cell + " | ");
-            }
-        }
-
-        System.out.println();
-    }
-
     public void switchRows(int row1, int row2) {
         checkCoordsValidity(row1, row2);
         if (row1 == row2) {

@@ -28,7 +28,6 @@ public class SudokuGenerator {
         GameField result = SudokuSolver.solve(new GameField());
         SudokuGenerator.makePermutations(result);
         SudokuGenerator.unsetFields(result, SudokuGenerationMasks.getMask(difficulty));
-        result.print();
         return result;
     }
 }
