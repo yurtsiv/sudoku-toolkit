@@ -5,6 +5,7 @@ import gui.components.mainMenu.MenuItem;
 import gui.pages.GenerateSudokuPage;
 import gui.pages.SolveSudokuPage;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
@@ -30,6 +31,7 @@ public class MainScene {
 
     public void start() {
         mainStage.setTitle("Sudoku Toolkit");
+        mainStage.getIcons().add(new Image("sudoku.png"));
 
         MainMenu mainMenu = MainMenu.getInstance(uiConfig, MenuItem.SOLVE_SUDOKU);
         Pane solveSudokuPage = SolveSudokuPage.getInstance().create(uiConfig, mainStage);

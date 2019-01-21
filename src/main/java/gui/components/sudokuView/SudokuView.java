@@ -27,9 +27,9 @@ public class SudokuView implements ComponentInterface {
 
         int size = gameField.getSize();
 
-        Button saveBtn = new Button("Save");
-        saveBtn.getStyleClass().add("secondary-button");
-        saveBtn.setOnAction((e) -> ImageGenerator.generateAndSave(gameField, mainStage));
+        Button exportBtn = new Button("Export");
+        exportBtn.getStyleClass().add("secondary-button");
+        exportBtn.setOnAction((e) -> ImageGenerator.generateAndSave(gameField, mainStage));
 
         PseudoClass right = PseudoClass.getPseudoClass("right");
         PseudoClass bottom = PseudoClass.getPseudoClass("bottom");
@@ -50,7 +50,7 @@ public class SudokuView implements ComponentInterface {
             }
         }
 
-        contentContainer.getChildren().addAll(grid, saveBtn);
+        contentContainer.getChildren().addAll(grid, exportBtn);
         return contentContainer;
     }
 }

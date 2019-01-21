@@ -52,9 +52,10 @@ public class SolveSudokuPage implements PageInterface {
                 showError(error.getMessage());
             }
         });
-        Button saveBtn = new Button("Save");
-        saveBtn.getStyleClass().add("secondary-button");
-        saveBtn.setOnAction((e) -> {
+
+        Button exportBtn = new Button("Export");
+        exportBtn.getStyleClass().add("secondary-button");
+        exportBtn.setOnAction((e) -> {
             if (!gameField.isValid()) {
                 showError("Game field is invalid");
                 return;
@@ -63,9 +64,9 @@ public class SolveSudokuPage implements PageInterface {
             ImageGenerator.generateAndSave(gameField, mainStage);
         });
 
-        VBox sudokuInputContainer = new VBox(10);
+        VBox sudokuInputContainer = new VBox(20);
         HBox buttonsContainer = new HBox(10);
-        buttonsContainer.getChildren().addAll(solveBtn, saveBtn);
+        buttonsContainer.getChildren().addAll(solveBtn, exportBtn);
         sudokuInputContainer.getChildren().addAll(inputFields.create(), buttonsContainer);
         pageContent.getChildren().add(sudokuInputContainer);
 
