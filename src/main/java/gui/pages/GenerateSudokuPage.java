@@ -18,8 +18,10 @@ import java.util.HashMap;
 
 
 public class GenerateSudokuPage implements PageInterface {
+    private static GenerateSudokuPage instance;
     private GameField generatedSudoku;
 
+    private GenerateSudokuPage() {}
     private BorderPane mainLayout = new BorderPane();
 
     public Pane create(HashMap<String, Double> config, Stage mainStage) {
@@ -54,5 +56,14 @@ public class GenerateSudokuPage implements PageInterface {
         mainLayout.setTop(sudokuParamsBar.create());
 
         return mainLayout;
+    }
+
+    public static GenerateSudokuPage getInstance() {
+        if (instance == null) {
+            instance = new GenerateSudokuPage();
+            return instance;
+        }
+
+        return instance;
     }
 }

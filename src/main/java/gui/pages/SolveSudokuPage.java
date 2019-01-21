@@ -14,11 +14,14 @@ import logic.sudoku.solver.SudokuSolver;
 import java.util.HashMap;
 
 public class SolveSudokuPage implements PageInterface {
+    private static SolveSudokuPage instance;
     private HBox pageContent = new HBox(50);
     private GameField gameField = new GameField();
     private Pane solvedSudokuView;
     private Alert errorAlert = new Alert(Alert.AlertType.ERROR);
 
+
+    private SolveSudokuPage() {}
 
     public Pane create(HashMap<String, Double> config, Stage mainStage) {
         pageContent.getStyleClass().add("solve-sudoku-page-content");
@@ -52,5 +55,14 @@ public class SolveSudokuPage implements PageInterface {
         pageContent.getChildren().add(sudokuInputContainer);
 
         return pageContent;
+    }
+
+    public static SolveSudokuPage getInstance() {
+        if (instance == null) {
+            instance = new SolveSudokuPage();
+            return instance;
+        }
+
+        return instance;
     }
 }

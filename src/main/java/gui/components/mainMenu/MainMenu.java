@@ -10,13 +10,15 @@ import javafx.scene.layout.VBox;
 import java.util.HashMap;
 
 public class MainMenu implements ComponentInterface {
+    private static MainMenu instance;
+
     private OnMenuItemClickListener clickListener;
     private HashMap<MenuItem, Button> menuButtons = new HashMap<>();
     private PseudoClass activePseudoClass = PseudoClass.getPseudoClass("active");
     private HashMap<String, Double> uiConfig;
     private MenuItem defaultActiveMenuItem;
 
-    public MainMenu(HashMap<String, Double> uiConfig, MenuItem defaultActiveMenuItem) {
+    private MainMenu(HashMap<String, Double> uiConfig, MenuItem defaultActiveMenuItem) {
         this.uiConfig = uiConfig;
         this.defaultActiveMenuItem = defaultActiveMenuItem;
     }
@@ -68,5 +70,14 @@ public class MainMenu implements ComponentInterface {
         menuLayout.getChildren().add(buttonsContainer);
 
         return menuLayout;
+    }
+
+    public static MainMenu getInstance(HashMap<String, Double> uiConfig, MenuItem defaultActiveMenuItem) {
+        if (instance == null) {
+            instance = new MainMenu(uiConfig, defaultActiveMenuItem);
+            return instance;
+        }
+
+        return instance;
     }
 }
