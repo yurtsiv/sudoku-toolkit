@@ -8,7 +8,7 @@
 * Posibility to export generated/entered sudokus to PNG
 
 ### Installation
-1. [Download](https://drive.google.com/file/d/1LoLaHRqYDRElAjM7D_5QEQ5clAxqmmD-/view?usp=sharing) an archive
+1. [Download](https://github.com/yurtsiv/sudoku-toolkit/releases/download/v1.0/sudoku-toolkit.zip) an archive
 2. Unpack it
 3. Run `sudoku-toolkit.jar` (Java 11)
 
