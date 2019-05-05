@@ -1,6 +1,6 @@
 # Sudoku Toolkit
 
-A simple application for solving and generating sudokus
+A small application for solving and generating sudokus
 
 ### Feautures
 * Sudoku solving (any complexity, but only in one way)
