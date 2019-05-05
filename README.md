@@ -10,7 +10,8 @@ A small application for solving and generating sudokus
 ### Installation & running
 1. [Download](https://github.com/yurtsiv/sudoku-toolkit/releases/download/v1.0/sudoku-toolkit.zip) an archive
 2. Unpack it
-3. Run `sudoku-toolkit.jar` (Java 11)
+3. Go to the root directory
+3. `java -jar sudoku-toolkit.jar` (Java 11)
 
 ### Screens
 
