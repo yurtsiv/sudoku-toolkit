@@ -14,17 +14,17 @@
 
 ### Screens
 
-#### Initial screen
+Initial screen
 ![](https://i.ibb.co/khGdbjm/1.png)
 
-#### Solving
+Solving
 ![](https://i.ibb.co/VJG2K1p/2.png)
 
-#### Generating (Easy, without solution)
+Generating (Easy, without solution)
 ![](https://i.ibb.co/qgYwC09/3.png)
 
-#### Generating (Medium, with solution)
+Generating (Medium, with solution)
 ![](https://i.ibb.co/9G84s1p/4.png)
 
-#### Generating (Hard, with solution)
+Generating (Hard, with solution)
 ![](https://i.ibb.co/hZY8YXh/5.png)
