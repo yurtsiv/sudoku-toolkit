@@ -5,7 +5,7 @@ A small application for solving and generating sudokus
 ### Feautures
 * Sudoku solving (any complexity, but only in one way)
 * Sudoku generation (easy, medium, hard)
-* Posibility to export generated/entered sudokus to PNG
+* Ability to export generated/entered sudokus to PNG
 
 ### Installation & running
 1. [Download](https://github.com/yurtsiv/sudoku-toolkit/releases/download/v1.0/sudoku-toolkit.zip) an archive
